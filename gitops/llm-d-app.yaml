@@ -1,0 +1,37 @@
+# gitops/apps/llm-d-app.yaml
+# This is an ApplicationSet. It's a powerful CRD from the OpenShift GitOps operator.
+# It finds all clusters selected by our `Placement` resource and tells Argo CD
+# to deploy our application to each of them.
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: llm-d-app
+  namespace: openshift-gitops
+spec:
+  generators:
+  - clusterDecisionResource:
+      configMapRef: acm-placement
+      labelSelector:
+        matchLabels:
+          cluster.open-cluster-management.io/placement: us-east-clusters
+      requeueAfterSeconds: 180
+  template:
+    metadata:
+      name: 'llm-d-app-{{name}}' # App name will be unique per cluster
+      labels:
+        app: llm-d
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/your-username/llm-d-gitops-example.git' # YOUR REPO URL
+        targetRevision: HEAD
+        path: gitops/manifests/llm-d-app/overlays/production # Deploy the production overlay
+      destination:
+        server: '{{server}}' # The server URL from the generator
+        namespace: llm-d-app
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true # Important: allow Argo CD to create the namespace

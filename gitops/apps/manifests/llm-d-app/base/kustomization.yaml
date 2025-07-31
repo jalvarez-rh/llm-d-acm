@@ -1,0 +1,10 @@
+# gitops/manifests/llm-d-app/base/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: llm-d-app
+resources:
+  - namespace.yaml
+  - orchestrator-deployment.yaml
+  - orchestrator-service.yaml
+  - mock-llm-deployment.yaml
+  - mock-llm-service.yaml

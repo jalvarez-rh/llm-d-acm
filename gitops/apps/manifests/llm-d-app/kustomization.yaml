@@ -1,0 +1,10 @@
+# gitops/manifests/llm-d-app/overlays/production/kustomization.yaml
+# Example overlay to customize for a "production" environment
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../../base
+patches:
+  - path: replicas.yaml
+    target:
+      kind: Deployment

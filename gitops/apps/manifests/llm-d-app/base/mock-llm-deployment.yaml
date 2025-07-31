@@ -1,0 +1,21 @@
+# gitops/manifests/llm-d-app/base/mock-llm-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mock-llm-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mock-llm-service
+  template:
+    metadata:
+      labels:
+        app: mock-llm-service
+    spec:
+      containers:
+        - name: mock-llm
+          # IMPORTANT: Replace with your actual image registry URL
+          image: quay.io/your-username/mock-llm-service:latest
+          ports:
+            - containerPort: 8000

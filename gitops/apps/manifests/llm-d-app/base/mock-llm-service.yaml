@@ -1,0 +1,12 @@
+# gitops/manifests/llm-d-app/base/mock-llm-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mock-llm-service
+spec:
+  selector:
+    app: mock-llm-service
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

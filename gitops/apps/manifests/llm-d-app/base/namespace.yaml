@@ -1,0 +1,5 @@
+# gitops/manifests/llm-d-app/base/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: llm-d-app # All our resources will be in this namespace

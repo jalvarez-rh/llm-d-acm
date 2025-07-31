@@ -1,0 +1,8 @@
+# gitops/manifests/llm-d-app/overlays/production/replicas.yaml
+# This patch increases the replica count for all deployments in this overlay
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: not-important
+spec:
+  replicas: 3

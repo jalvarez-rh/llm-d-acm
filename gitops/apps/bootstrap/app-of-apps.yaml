@@ -1,0 +1,21 @@
+# gitops/bootstrap/app-of-apps.yaml
+# This is the first thing you apply to your RHACM Hub cluster.
+# It tells Argo CD to look in the `gitops/apps` directory and create
+# any applications it finds there. This is the "App of Apps" pattern.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap-apps
+  namespace: openshift-gitops # Argo CD's namespace
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/jalvarez-rh/llm-d-acm.git' # YOUR REPO URL
+    targetRevision: HEAD
+    path: gitops/apps
+  destination:
+    server: 'https://kubernetes.default.svc' # Deploy to the local/hub cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
