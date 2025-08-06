@@ -23,7 +23,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/your-username/llm-d-gitops-example.git' # YOUR REPO URL
+        repoURL: 'https://github.com/jialvare/llm-d-gitops-example.git' # YOUR REPO URL
         targetRevision: HEAD
         path: gitops/manifests/llm-d-app/overlays/production # Deploy the production overlay
       destination:
