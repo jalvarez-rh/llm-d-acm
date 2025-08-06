@@ -23,9 +23,9 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/jialvare/llm-d-gitops-example.git' # YOUR REPO URL
+        repoURL: 'https://github.com/jalvarez-rh/llm-d-acm.git' # YOUR REPO URL
         targetRevision: HEAD
-        path: gitops/manifests/llm-d-app/overlays/production # Deploy the production overlay
+        path: gitops/apps/manifests/llm-d-app/overlays/production # Deploy the production overlay
       destination:
         server: '{{server}}' # The server URL from the generator
         namespace: llm-d-app
